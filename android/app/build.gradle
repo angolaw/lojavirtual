@@ -39,6 +39,7 @@ android {
         applicationId "com.w0ken0ne.lojavirtual"
         minSdkVersion 16
         targetSdkVersion 30
+        multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
