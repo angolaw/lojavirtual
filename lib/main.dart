@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lojavirtual/screens/base/base_screen.dart';
 
 void main() async {
   runApp(MyApp());

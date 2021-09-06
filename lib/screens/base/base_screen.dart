@@ -1,10 +1,27 @@
 import 'package:flutter/material.dart';
 
 class BaseScreen extends StatelessWidget {
-  const BaseScreen({Key key}) : super(key: key);
-
+  final PageController pageController = PageController();
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return PageView(
+      controller: pageController,
+      children: [
+        Container(
+          color: Colors.red,
+          child: ElevatedButton(
+              onPressed: () {
+                pageController.jumpToPage(1);
+              },
+              child: Text("Proximo")),
+        ),
+        Container(
+          color: Colors.yellow,
+        ),
+        Container(
+          color: Colors.green,
+        ),
+      ],
+    );
   }
 }
