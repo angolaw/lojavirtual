@@ -1,10 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
   runApp(MyApp());
   //test firebase
-  Firestore.instance.collection('teste').add({'teste': 'admin'});
+  //can use the abreviated call name "pedidos/0001"
 }
 
 class MyApp extends StatelessWidget {
@@ -12,12 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Loja Virtual',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: Container(
-          decoration: const BoxDecoration(color: Colors.greenAccent),
-        ));
+        home: BaseScreen());
   }
 }
