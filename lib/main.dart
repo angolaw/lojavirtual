@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
+  //test firebase
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: Container(
-          decoration: BoxDecoration(color: Colors.greenAccent),
+          decoration: const BoxDecoration(color: Colors.greenAccent),
         ));
   }
 }
