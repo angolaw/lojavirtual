@@ -11,10 +11,13 @@ class DrawerTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(
-          iconData,
-          size: 32,
-          color: Colors.grey[700],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+          child: Icon(
+            iconData,
+            size: 32,
+            color: Colors.grey[700],
+          ),
         ),
         Text(
           title,
