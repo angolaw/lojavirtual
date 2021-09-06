@@ -8,6 +8,11 @@ class BaseScreen extends StatelessWidget {
       controller: pageController,
       physics: const NeverScrollableScrollPhysics(),
       children: [
+        Scaffold(
+          appBar: AppBar(
+            title: Text("Home"),
+          ),
+        ),
         Container(
           color: Colors.red,
           child: ElevatedButton(
