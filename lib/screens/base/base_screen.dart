@@ -9,7 +9,7 @@ class BaseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => PageManager(
-        pageController: pageController,
+        pageController,
       ),
       child: PageView(
         controller: pageController,
