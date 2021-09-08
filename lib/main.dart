@@ -14,9 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Loja Virtual',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: ThemeData(primaryColor: const Color.fromARGB(255, 4, 125, 141)),
         home: BaseScreen());
   }
 }

@@ -21,19 +21,23 @@ class BaseScreen extends StatelessWidget {
             ),
             drawer: CustomDrawer(),
           ),
-          Container(
-            color: Colors.red,
-            child: ElevatedButton(
-                onPressed: () {
-                  pageController.jumpToPage(1);
-                },
-                child: Text("Proximo")),
+          Scaffold(
+            appBar: AppBar(
+              title: Text("Home2"),
+            ),
+            drawer: CustomDrawer(),
           ),
-          Container(
-            color: Colors.yellow,
+          Scaffold(
+            appBar: AppBar(
+              title: Text("Home3"),
+            ),
+            drawer: CustomDrawer(),
           ),
-          Container(
-            color: Colors.green,
+          Scaffold(
+            appBar: AppBar(
+              title: Text("Home4"),
+            ),
+            drawer: CustomDrawer(),
           ),
         ],
       ),
