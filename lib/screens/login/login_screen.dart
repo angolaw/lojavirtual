@@ -57,7 +57,7 @@ class LoginScreen extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () {},
-                      child: Text("Esqueci minha senha"),
+                      child: const Text("Esqueci minha senha"),
                     ),
                   ),
                   const SizedBox(height: 16),
