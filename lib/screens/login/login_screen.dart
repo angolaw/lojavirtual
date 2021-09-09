@@ -6,11 +6,13 @@ import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         title: const Text("Entrar"),
         leading: const BackButton(),
@@ -76,8 +78,20 @@ class LoginScreen extends StatelessWidget {
                               password: passwordController.text);
                           context.read<UserManager>().signIn(
                               user: user,
+                              onSuccess: () {
+                                print("Sucesso");
+                                //TODO FECHAR TELA DE LOGIN
+                              },
                               onFail: (e) {
-                                print(e);
+                                // scaffoldKey.currentState!.showSnackBar(SnackBar(
+                                //   content: Text("Falha ao entrar: $e"),
+                                //   backgroundColor: Colors.red,
+                                // ));
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content: Text("Falha ao entrar: $e"),
+                                  backgroundColor: Colors.red,
+                                ));
                               });
                         }
                       },
