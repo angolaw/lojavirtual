@@ -74,7 +74,11 @@ class LoginScreen extends StatelessWidget {
                           final user = User(
                               email: emailController.text,
                               password: passwordController.text);
-                          context.read<UserManager>().signIn(user);
+                          context.read<UserManager>().signIn(
+                              user: user,
+                              onFail: (e) {
+                                print(e);
+                              });
                         }
                       },
                       color: Theme.of(context).primaryColor,
