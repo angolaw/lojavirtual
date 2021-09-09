@@ -3,6 +3,8 @@ import 'package:lojavirtual/helpers/validators.dart';
 
 class LoginScreen extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +28,7 @@ class LoginScreen extends StatelessWidget {
                     decoration: const InputDecoration(
                       hintText: "Email",
                     ),
+                    controller: emailController,
                     keyboardType: TextInputType.emailAddress,
                     autocorrect: false,
                     validator: (email) {
@@ -40,6 +43,7 @@ class LoginScreen extends StatelessWidget {
                     decoration: const InputDecoration(
                       hintText: "Senha",
                     ),
+                    controller: passwordController,
                     autocorrect: false,
                     obscureText: true,
                     validator: (password) {
@@ -62,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                     child: RaisedButton(
                       onPressed: () {
                         //only if the user clicks the button it validates
-                        formKey.currentState!.validate();
+                        if (formKey.currentState!.validate()) {}
                       },
                       color: Theme.of(context).primaryColor,
                       textColor: Colors.white,
