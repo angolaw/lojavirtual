@@ -66,7 +66,9 @@ class LoginScreen extends StatelessWidget {
                     child: RaisedButton(
                       onPressed: () {
                         //only if the user clicks the button it validates
-                        if (formKey.currentState!.validate()) {}
+                        if (formKey.currentState!.validate()) {
+                          //call firebase signin
+                        }
                       },
                       color: Theme.of(context).primaryColor,
                       textColor: Colors.white,
