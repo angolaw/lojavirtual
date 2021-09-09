@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lojavirtual/helpers/validators.dart';
 
 class LoginScreen extends StatelessWidget {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,6 +16,7 @@ class LoginScreen extends StatelessWidget {
         child: Card(
             margin: const EdgeInsets.symmetric(horizontal: 16),
             child: Form(
+              key: formKey,
               autovalidateMode: AutovalidateMode.always,
               child: ListView(
                 padding: const EdgeInsets.all(16),
@@ -58,7 +60,9 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(
                     height: 44,
                     child: RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        formKey.currentState!.validate();
+                      },
                       color: Theme.of(context).primaryColor,
                       textColor: Colors.white,
                       child: const Text(
