@@ -17,6 +17,7 @@ class LoginScreen extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 16),
             child: Form(
               key: formKey,
+              autovalidateMode: AutovalidateMode.always,
               child: ListView(
                 padding: const EdgeInsets.all(16),
                 shrinkWrap: true,
