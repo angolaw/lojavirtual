@@ -27,6 +27,7 @@ class LoginScreen extends StatelessWidget {
                     return null;
                   },
                 ),
+                const SizedBox(height: 16),
                 TextFormField(
                   decoration: const InputDecoration(
                     hintText: "Senha",
@@ -47,13 +48,17 @@ class LoginScreen extends StatelessWidget {
                     child: Text("Esqueci minha senha"),
                   ),
                 ),
+                const SizedBox(height: 16),
                 SizedBox(
                   height: 44,
                   child: RaisedButton(
                     onPressed: () {},
                     color: Theme.of(context).primaryColor,
                     textColor: Colors.white,
-                    child: const Text("Entrar"),
+                    child: const Text(
+                      "Entrar",
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
                 )
               ],
