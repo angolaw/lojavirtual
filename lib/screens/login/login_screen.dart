@@ -40,6 +40,13 @@ class LoginScreen extends StatelessWidget {
                     return null;
                   },
                 ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text("Esqueci minha senha"),
+                  ),
+                )
               ],
             )),
       ),
