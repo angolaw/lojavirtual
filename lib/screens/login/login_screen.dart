@@ -23,7 +23,23 @@ class LoginScreen extends StatelessWidget {
                   ),
                   keyboardType: TextInputType.emailAddress,
                   autocorrect: false,
-                )
+                  validator: (email) {
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    hintText: "Senha",
+                  ),
+                  autocorrect: false,
+                  obscureText: true,
+                  validator: (password) {
+                    if (password!.isEmpty || password.length < 6) {
+                      return "Senha inválida!";
+                    }
+                    return null;
+                  },
+                ),
               ],
             )),
       ),
