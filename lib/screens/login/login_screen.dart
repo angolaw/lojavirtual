@@ -12,9 +12,20 @@ class LoginScreen extends StatelessWidget {
       ),
       body: Center(
         child: Card(
+            margin: const EdgeInsets.symmetric(horizontal: 16),
             child: ListView(
-          children: [TextFormField()],
-        )),
+              padding: const EdgeInsets.all(16),
+              shrinkWrap: true,
+              children: [
+                TextFormField(
+                  decoration: const InputDecoration(
+                    hintText: "Email",
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                  autocorrect: false,
+                )
+              ],
+            )),
       ),
     );
   }
