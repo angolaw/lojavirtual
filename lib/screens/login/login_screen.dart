@@ -17,7 +17,6 @@ class LoginScreen extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 16),
             child: Form(
               key: formKey,
-              autovalidateMode: AutovalidateMode.always,
               child: ListView(
                 padding: const EdgeInsets.all(16),
                 shrinkWrap: true,
@@ -61,6 +60,7 @@ class LoginScreen extends StatelessWidget {
                     height: 44,
                     child: RaisedButton(
                       onPressed: () {
+                        //only if the user clicks the button it validates
                         formKey.currentState!.validate();
                       },
                       color: Theme.of(context).primaryColor,
