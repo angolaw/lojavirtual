@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lojavirtual/helpers/validators.dart';
+import 'package:lojavirtual/models/user.dart';
+import 'package:lojavirtual/models/user_manager.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -68,6 +71,10 @@ class LoginScreen extends StatelessWidget {
                         //only if the user clicks the button it validates
                         if (formKey.currentState!.validate()) {
                           //call firebase signin
+                          final user = User(
+                              email: emailController.text,
+                              password: passwordController.text);
+                          context.read<UserManager>().signIn(user);
                         }
                       },
                       color: Theme.of(context).primaryColor,
