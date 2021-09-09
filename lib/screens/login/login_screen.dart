@@ -46,6 +46,15 @@ class LoginScreen extends StatelessWidget {
                     onPressed: () {},
                     child: Text("Esqueci minha senha"),
                   ),
+                ),
+                SizedBox(
+                  height: 44,
+                  child: RaisedButton(
+                    onPressed: () {},
+                    color: Theme.of(context).primaryColor,
+                    textColor: Colors.white,
+                    child: const Text("Entrar"),
+                  ),
                 )
               ],
             )),
