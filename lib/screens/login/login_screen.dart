@@ -78,7 +78,7 @@ class LoginScreen extends StatelessWidget {
                               final user = User(
                                   email: emailController.text,
                                   password: passwordController.text);
-                              context.read<UserManager>().signIn(
+                              userManager.signIn(
                                   user: user,
                                   onSuccess: () {
                                     print("Sucesso");
