@@ -25,85 +25,89 @@ class LoginScreen extends StatelessWidget {
             child: Form(
               key: formKey,
               autovalidateMode: AutovalidateMode.always,
-              child: ListView(
-                padding: const EdgeInsets.all(16),
-                shrinkWrap: true,
-                children: [
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: "Email",
-                    ),
-                    controller: emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    autocorrect: false,
-                    validator: (email) {
-                      if (!emailValid(email!)) {
-                        return "Email inválido";
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: "Senha",
-                    ),
-                    controller: passwordController,
-                    autocorrect: false,
-                    obscureText: true,
-                    validator: (password) {
-                      if (password!.isEmpty || password.length < 6) {
-                        return "Senha inválida!";
-                      }
-                      return null;
-                    },
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {},
-                      child: const Text("Esqueci minha senha"),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    height: 44,
-                    child: RaisedButton(
-                      onPressed: () {
-                        //only if the user clicks the button it validates
-                        if (formKey.currentState!.validate()) {
-                          //call firebase signin
-                          final user = User(
-                              email: emailController.text,
-                              password: passwordController.text);
-                          context.read<UserManager>().signIn(
-                              user: user,
-                              onSuccess: () {
-                                print("Sucesso");
-                                //TODO FECHAR TELA DE LOGIN
-                              },
-                              onFail: (e) {
-                                // scaffoldKey.currentState!.showSnackBar(SnackBar(
-                                //   content: Text("Falha ao entrar: $e"),
-                                //   backgroundColor: Colors.red,
-                                // ));
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content: Text("Falha ao entrar: $e"),
-                                  backgroundColor: Colors.red,
-                                ));
-                              });
-                        }
-                      },
-                      color: Theme.of(context).primaryColor,
-                      textColor: Colors.white,
-                      child: const Text(
-                        "Entrar",
-                        style: TextStyle(fontSize: 18),
+              child: Consumer<UserManager>(
+                builder: (_, userManager, __) {
+                  return ListView(
+                    padding: const EdgeInsets.all(16),
+                    shrinkWrap: true,
+                    children: [
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: "Email",
+                        ),
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        autocorrect: false,
+                        validator: (email) {
+                          if (!emailValid(email!)) {
+                            return "Email inválido";
+                          }
+                          return null;
+                        },
                       ),
-                    ),
-                  )
-                ],
+                      const SizedBox(height: 16),
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: "Senha",
+                        ),
+                        controller: passwordController,
+                        autocorrect: false,
+                        obscureText: true,
+                        validator: (password) {
+                          if (password!.isEmpty || password.length < 6) {
+                            return "Senha inválida!";
+                          }
+                          return null;
+                        },
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          onPressed: () {},
+                          child: const Text("Esqueci minha senha"),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      SizedBox(
+                        height: 44,
+                        child: RaisedButton(
+                          onPressed: () {
+                            //only if the user clicks the button it validates
+                            if (formKey.currentState!.validate()) {
+                              //call firebase signin
+                              final user = User(
+                                  email: emailController.text,
+                                  password: passwordController.text);
+                              context.read<UserManager>().signIn(
+                                  user: user,
+                                  onSuccess: () {
+                                    print("Sucesso");
+                                    //TODO FECHAR TELA DE LOGIN
+                                  },
+                                  onFail: (e) {
+                                    // scaffoldKey.currentState!.showSnackBar(SnackBar(
+                                    //   content: Text("Falha ao entrar: $e"),
+                                    //   backgroundColor: Colors.red,
+                                    // ));
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                      content: Text("Falha ao entrar: $e"),
+                                      backgroundColor: Colors.red,
+                                    ));
+                                  });
+                            }
+                          },
+                          color: Theme.of(context).primaryColor,
+                          textColor: Colors.white,
+                          child: const Text(
+                            "Entrar",
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                      )
+                    ],
+                  );
+                },
               ),
             )),
       ),
