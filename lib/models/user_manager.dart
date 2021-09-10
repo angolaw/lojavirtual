@@ -16,6 +16,7 @@ class UserManager extends ChangeNotifier {
     try {
       final AuthResult result = await auth.signInWithEmailAndPassword(
           email: user.email, password: user.password);
+      await Future.delayed(const Duration(seconds: 3));
       onSuccess();
     } on PlatformException catch (e) {
       onFail(getErrorString(e.code));

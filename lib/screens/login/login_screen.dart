@@ -36,6 +36,7 @@ class LoginScreen extends StatelessWidget {
                           hintText: "Email",
                         ),
                         controller: emailController,
+                        enabled: !userManager.loading,
                         keyboardType: TextInputType.emailAddress,
                         autocorrect: false,
                         validator: (email) {
@@ -51,6 +52,7 @@ class LoginScreen extends StatelessWidget {
                           hintText: "Senha",
                         ),
                         controller: passwordController,
+                        enabled: !userManager.loading,
                         autocorrect: false,
                         obscureText: true,
                         validator: (password) {
