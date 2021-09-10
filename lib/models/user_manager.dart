@@ -12,19 +12,20 @@ class UserManager extends ChangeNotifier {
       {required User user,
       required Function onFail,
       required Function onSuccess}) async {
-    setLoading(true);
+    setLoading(value: true);
     try {
       final AuthResult result = await auth.signInWithEmailAndPassword(
           email: user.email, password: user.password);
+      //TODO remove!
       await Future.delayed(const Duration(seconds: 3));
       onSuccess();
     } on PlatformException catch (e) {
       onFail(getErrorString(e.code));
     }
-    setLoading(false);
+    setLoading(value: false);
   }
 
-  void setLoading(bool value) {
+  void setLoading({required bool value}) {
     loading = value;
     notifyListeners();
   }
