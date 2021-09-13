@@ -20,6 +20,7 @@ class CustomDrawer extends StatelessWidget {
           ListView(
             children: [
               CustomDrawerHeader(),
+              const Divider(),
               const DrawerTile(iconData: Icons.home, title: "Inicio", page: 0),
               const DrawerTile(
                   iconData: Icons.list, title: "Produtos", page: 1),
