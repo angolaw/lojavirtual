@@ -40,26 +40,30 @@ class SignUpScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (email) {
-                        if (email!.isEmpty) {
-                          return 'Campo Obrigatório';
-                        } else if (!emailValid(email)) return "Email inválido";
-                        return null;
-                      },
-                      decoration: const InputDecoration(
-                        hintText: "Email",
-                      )),
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (email) {
+                      if (email!.isEmpty) {
+                        return 'Campo Obrigatório';
+                      } else if (!emailValid(email)) return "Email inválido";
+                      return null;
+                    },
+                    decoration: const InputDecoration(
+                      hintText: "Email",
+                    ),
+                    onSaved: (email) => user.email = email!,
+                  ),
                   const SizedBox(height: 16),
                   TextFormField(
-                      obscureText: true,
-                      validator: (pass) {
-                        if (pass!.isEmpty)
-                          return "Campo Obrigatório";
-                        else if (pass.length < 6) return "Senha muito curta";
-                        return null;
-                      },
-                      decoration: const InputDecoration(hintText: "Senha")),
+                    obscureText: true,
+                    validator: (pass) {
+                      if (pass!.isEmpty)
+                        return "Campo Obrigatório";
+                      else if (pass.length < 6) return "Senha muito curta";
+                      return null;
+                    },
+                    decoration: const InputDecoration(hintText: "Senha"),
+                    onSaved: (pass) => user.password = pass!,
+                  ),
                   const SizedBox(height: 16),
                   TextFormField(
                       obscureText: true,
