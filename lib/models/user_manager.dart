@@ -7,7 +7,7 @@ import 'package:lojavirtual/models/user.dart';
 
 class UserManager extends ChangeNotifier {
   final FirebaseAuth auth = FirebaseAuth.instance;
-  late User user;
+  var user;
   bool _loading = false;
   bool get loading => _loading;
   bool get isLoggedIn => user != null;
@@ -61,7 +61,7 @@ class UserManager extends ChangeNotifier {
 
   Future<void> signOut() async {
     await auth.signOut();
-    user = User.empty();
+    user = null;
     notifyListeners();
   }
 
