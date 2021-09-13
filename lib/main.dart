@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lojavirtual/models/user_manager.dart';
 import 'package:lojavirtual/screens/base/base_screen.dart';
+import 'package:lojavirtual/screens/signup/sign_up_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
           title: 'Loja Virtual',
           debugShowCheckedModeBanner: false,
+          routes: {
+            '/signup': (context) => SignUpScreen(),
+          },
           theme: ThemeData(
               primaryColor: const Color.fromARGB(
                 255,
