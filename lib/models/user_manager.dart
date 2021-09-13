@@ -57,7 +57,7 @@ class UserManager extends ChangeNotifier {
           email: user.email, password: user.password);
       this.user = result.user;
       user.id = result.user.uid;
-      user.saveData();
+      await user.saveData();
       onSuccess();
     } on PlatformException catch (e) {
       onFail(getErrorString(e.code));
