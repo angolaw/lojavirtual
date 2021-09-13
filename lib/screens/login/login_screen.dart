@@ -95,8 +95,7 @@ class LoginScreen extends StatelessWidget {
                                     userManager.signIn(
                                         user: user,
                                         onSuccess: () {
-                                          print("Sucesso");
-                                          //TODO FECHAR TELA DE LOGIN
+                                          Navigator.of(context).pop();
                                         },
                                         onFail: (e) {
                                           // scaffoldKey.currentState!.showSnackBar(SnackBar(

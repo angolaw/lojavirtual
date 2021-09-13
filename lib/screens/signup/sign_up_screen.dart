@@ -104,8 +104,7 @@ class SignUpScreen extends StatelessWidget {
                             context.read<UserManager>().signUp(
                                 user: user,
                                 onSuccess: () {
-                                  //todo POP
-                                  debugPrint("sucesso");
+                                  Navigator.of(context).pop();
                                 },
                                 onFail: (e) {
                                   ScaffoldMessenger.of(context)
