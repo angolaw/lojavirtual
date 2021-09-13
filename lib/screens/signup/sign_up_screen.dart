@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lojavirtual/helpers/validators.dart';
+import 'package:lojavirtual/models/user.dart';
 
 class SignUpScreen extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final User user = User();
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +77,11 @@ class SignUpScreen extends StatelessWidget {
                         disabledColor:
                             Theme.of(context).primaryColor.withAlpha(100),
                         textColor: Colors.white,
-                        onPressed: () {},
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            formKey.currentState!.save();
+                          }
+                        },
                         child: const Text(
                           "Criar Conta",
                           style: TextStyle(fontSize: 18),
