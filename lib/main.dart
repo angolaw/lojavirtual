@@ -35,12 +35,14 @@ class MyApp extends StatelessWidget {
               appBarTheme: const AppBarTheme(
                 elevation: 0,
               )),
+          initialRoute: '/base',
           onGenerateRoute: (settings) {
             switch (settings.name) {
-              case '/base':
-                return MaterialPageRoute(builder: (_) => BaseScreen());
               case '/signup':
                 return MaterialPageRoute(builder: (_) => SignUpScreen());
+              case '/base':
+              default:
+                return MaterialPageRoute(builder: (_) => BaseScreen());
             }
           },
         ));
