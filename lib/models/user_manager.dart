@@ -7,7 +7,7 @@ import 'package:lojavirtual/models/user.dart';
 
 class UserManager extends ChangeNotifier {
   final FirebaseAuth auth = FirebaseAuth.instance;
-  User user;
+  late User user;
   bool _loading = false;
   bool get loading => _loading;
   final Firestore firestore = Firestore.instance;
@@ -26,7 +26,7 @@ class UserManager extends ChangeNotifier {
           email: user.email, password: user.password);
       //TODO remove!
       await Future.delayed(const Duration(seconds: 3));
-      this.user = result.user;
+      await _loadCurrentUser(firebaseUser: result.user);
       onSuccess();
     } on PlatformException catch (e) {
       onFail(getErrorString(e.code));
