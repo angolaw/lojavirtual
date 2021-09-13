@@ -10,7 +10,11 @@ class User {
   DocumentReference get firestoreRef =>
       Firestore.instance.document('users/$id');
   User(this.email, this.password, [this.confirmPassword, this.name, this.id]);
-
+  User.fromDocument(DocumentSnapshot document) {
+    name = document.data['name'] as String;
+    email = document.data['email'] as String;
+    id = document.data['id'] as String;
+  }
   Future<void> saveData() async {
     await firestoreRef.setData(toMap());
   }
