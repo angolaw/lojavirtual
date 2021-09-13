@@ -10,6 +10,7 @@ class UserManager extends ChangeNotifier {
   late User user;
   bool _loading = false;
   bool get loading => _loading;
+  bool get isLoggedIn => user != null;
   final Firestore firestore = Firestore.instance;
 
   UserManager() {
