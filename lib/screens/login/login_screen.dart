@@ -90,9 +90,8 @@ class LoginScreen extends StatelessWidget {
                                   //only if the user clicks the button it validates
                                   if (formKey.currentState!.validate()) {
                                     //call firebase signin
-                                    final user = User.login(
-                                        email: emailController.text,
-                                        password: passwordController.text);
+                                    final user = User(emailController.text,
+                                        passwordController.text);
                                     userManager.signIn(
                                         user: user,
                                         onSuccess: () {
