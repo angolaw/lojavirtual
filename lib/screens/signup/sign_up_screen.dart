@@ -4,7 +4,7 @@ import 'package:lojavirtual/models/user.dart';
 
 class SignUpScreen extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  late final User user;
+  var user = User("", "");
 
   @override
   Widget build(BuildContext context) {
@@ -66,15 +66,18 @@ class SignUpScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
-                      obscureText: true,
-                      validator: (pass) {
-                        if (pass!.isEmpty)
-                          return "Campo Obrigatório";
-                        else if (pass.length < 6) return "Senha muito curta";
-                        return null;
-                      },
-                      decoration:
-                          const InputDecoration(hintText: "Repita a senha")),
+                    obscureText: true,
+                    validator: (pass) {
+                      if (pass!.isEmpty)
+                        return "Campo Obrigatório";
+                      else if (pass.length < 6) return "Senha muito curta";
+                      return null;
+                    },
+                    decoration:
+                        const InputDecoration(hintText: "Repita a senha"),
+                    onSaved: (confirmation) =>
+                        user.confirmPassword = confirmation!,
+                  ),
                   const SizedBox(height: 16),
                   SizedBox(
                     height: 44,
@@ -86,6 +89,16 @@ class SignUpScreen extends StatelessWidget {
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             formKey.currentState!.save();
+
+                            if (user.password != user.confirmPassword) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text("Senhas não coincidem"),
+                                backgroundColor: Colors.red,
+                              ));
+                              return;
+                            }
+                            //userManager
                           }
                         },
                         child: const Text(
