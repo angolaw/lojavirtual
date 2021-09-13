@@ -15,13 +15,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => UserManager(),
-      child: MaterialApp(
+        create: (_) => UserManager(),
+        child: MaterialApp(
           title: 'Loja Virtual',
           debugShowCheckedModeBanner: false,
-          routes: {
-            '/signup': (context) => SignUpScreen(),
-          },
           theme: ThemeData(
               primaryColor: const Color.fromARGB(
                 255,
@@ -38,7 +35,14 @@ class MyApp extends StatelessWidget {
               appBarTheme: const AppBarTheme(
                 elevation: 0,
               )),
-          home: BaseScreen()),
-    );
+          onGenerateRoute: (settings) {
+            switch (settings.name) {
+              case '/base':
+                return MaterialPageRoute(builder: (_) => BaseScreen());
+              case '/signup':
+                return MaterialPageRoute(builder: (_) => SignUpScreen());
+            }
+          },
+        ));
   }
 }
