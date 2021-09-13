@@ -11,6 +11,7 @@ class CustomDrawerHeader extends StatelessWidget {
       child: Consumer<UserManager>(builder: (_, userManager, __) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             const Text(
               "Loja do \nWill",
@@ -20,7 +21,7 @@ class CustomDrawerHeader extends StatelessWidget {
               ),
             ),
             Text(
-              "Olá: ${userManager.user.name ?? ''}",
+              "Olá, ${userManager.user.name ?? ''}",
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
               style: const TextStyle(
@@ -29,8 +30,21 @@ class CustomDrawerHeader extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: () {},
-              child: Text(""),
+              onTap: () {
+                if (userManager.isLoggedIn) {
+                  //todo sair
+                } else {
+                  Navigator.of(context).pushNamed('/login');
+                }
+              },
+              child: Text(
+                userManager.isLoggedIn ? 'Sair' : 'Entre ou cadastre-se >',
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             )
           ],
         );
