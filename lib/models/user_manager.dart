@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +10,7 @@ class UserManager extends ChangeNotifier {
   late FirebaseUser user;
   bool _loading = false;
   bool get loading => _loading;
+  final Firestore firestore = Firestore.instance;
 
   UserManager() {
     _loadCurrentUser();
@@ -40,8 +42,8 @@ class UserManager extends ChangeNotifier {
   Future<void> _loadCurrentUser() async {
     final FirebaseUser currentUser = await auth.currentUser();
     if (currentUser != null) {
-      user = currentUser;
-      debugPrint(user.uid);
+      final DocumentSnapshot doc =
+          await firestore.collection('users').document(currentUser.uid).get();
     }
     notifyListeners();
   }
