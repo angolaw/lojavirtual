@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lojavirtual/helpers/validators.dart';
 
 class SignUpScreen extends StatelessWidget {
   @override
@@ -10,17 +11,28 @@ class SignUpScreen extends StatelessWidget {
       ),
       body: Center(
         child: Card(
-            margin: EdgeInsets.symmetric(horizontal: 16),
+            margin: const EdgeInsets.symmetric(horizontal: 16),
             child: ListView(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               shrinkWrap: true,
               children: [
                 TextFormField(
+                    validator: (nome) {
+                      if (nome!.isEmpty) {
+                        return "Campo obrigatório";
+                      } else if (nome.length < 2) return "Nome muito curto";
+                    },
                     decoration:
                         const InputDecoration(hintText: "Nome completo")),
                 const SizedBox(height: 16),
                 TextFormField(
                     keyboardType: TextInputType.emailAddress,
+                    validator: (email) {
+                      if (email!.isEmpty) {
+                        return 'Campo Obrigatório';
+                      } else if (!emailValid(email)) return "Email inválido";
+                      return null;
+                    },
                     decoration: const InputDecoration(
                       hintText: "Email",
                     )),
