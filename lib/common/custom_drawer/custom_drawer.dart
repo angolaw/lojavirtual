@@ -5,10 +5,18 @@ import 'package:lojavirtual/common/custom_drawer/drawer_tile.dart';
 class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Drawer(
-          child: ListView(
+    return Drawer(
+      child: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color.fromARGB(255, 203, 236, 241), Colors.white],
+                begin: Alignment.topCenter,
+              ),
+            ),
+          ),
+          ListView(
             children: [
               CustomDrawerHeader(),
               const DrawerTile(iconData: Icons.home, title: "Inicio", page: 0),
@@ -22,8 +30,8 @@ class CustomDrawer extends StatelessWidget {
                   iconData: Icons.location_on, title: "Lojas", page: 3),
             ],
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
