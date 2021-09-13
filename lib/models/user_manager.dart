@@ -39,16 +39,6 @@ class UserManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> _loadCurrentUser({FirebaseUser? firebaseUser}) async {
-    final FirebaseUser currentUser = firebaseUser ?? await auth.currentUser();
-    if (currentUser != null) {
-      final DocumentSnapshot doc =
-          await firestore.collection('users').document(currentUser.uid).get();
-      user = User.fromDocument(doc);
-    }
-    notifyListeners();
-  }
-
   Future<void> signUp({
     required User user,
     required Function onSuccess,
@@ -59,11 +49,23 @@ class UserManager extends ChangeNotifier {
       final result = await auth.createUserWithEmailAndPassword(
           email: user.email, password: user.password);
       user.id = result.user.uid;
+      this.user = user;
       await user.saveData();
       onSuccess();
     } on PlatformException catch (e) {
       onFail(getErrorString(e.code));
     }
     loading = false;
+  }
+
+  Future<void> _loadCurrentUser({FirebaseUser? firebaseUser}) async {
+    final FirebaseUser currentUser = firebaseUser ?? await auth.currentUser();
+    if (currentUser != null) {
+      final DocumentSnapshot doc =
+          await firestore.collection('users').document(currentUser.uid).get();
+      user = User.fromDocument(doc);
+      debugPrint(user.name);
+    }
+    notifyListeners();
   }
 }
