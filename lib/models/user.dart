@@ -15,6 +15,13 @@ class User {
     email = document.data['email'] as String;
     id = document.data['id'] as String;
   }
+  User.empty(
+      {this.name = "",
+      this.id = "",
+      this.email = "",
+      this.password = "",
+      this.confirmPassword = ""});
+
   Future<void> saveData() async {
     await firestoreRef.setData(toMap());
   }

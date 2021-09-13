@@ -59,6 +59,12 @@ class UserManager extends ChangeNotifier {
     loading = false;
   }
 
+  Future<void> signOut() async {
+    await auth.signOut();
+    user = User.empty();
+    notifyListeners();
+  }
+
   Future<void> _loadCurrentUser({FirebaseUser? firebaseUser}) async {
     final FirebaseUser currentUser = firebaseUser ?? await auth.currentUser();
     if (currentUser != null) {
