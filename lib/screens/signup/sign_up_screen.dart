@@ -20,7 +20,12 @@ class SignUpScreen extends StatelessWidget {
                     validator: (nome) {
                       if (nome!.isEmpty) {
                         return "Campo obrigatório";
-                      } else if (nome.length < 2) return "Nome muito curto";
+                      } else if (nome.length < 2)
+                        return "Nome muito curto";
+                      else if (nome.trim().split(' ').length <= 1) {
+                        return "Insira o nome completo";
+                      }
+                      return null;
                     },
                     decoration:
                         const InputDecoration(hintText: "Nome completo")),
@@ -39,10 +44,22 @@ class SignUpScreen extends StatelessWidget {
                 const SizedBox(height: 16),
                 TextFormField(
                     obscureText: true,
+                    validator: (pass) {
+                      if (pass!.isEmpty)
+                        return "Campo Obrigatório";
+                      else if (pass.length < 6) return "Senha muito curta";
+                      return null;
+                    },
                     decoration: const InputDecoration(hintText: "Senha")),
                 const SizedBox(height: 16),
                 TextFormField(
                     obscureText: true,
+                    validator: (pass) {
+                      if (pass!.isEmpty)
+                        return "Campo Obrigatório";
+                      else if (pass.length < 6) return "Senha muito curta";
+                      return null;
+                    },
                     decoration:
                         const InputDecoration(hintText: "Repita a senha")),
                 const SizedBox(height: 16),
