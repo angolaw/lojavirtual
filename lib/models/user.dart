@@ -6,10 +6,13 @@ class User {
   String? confirmPassword;
   String? name;
   String? id;
+  //firestore ref
+  DocumentReference get firestoreRef =>
+      Firestore.instance.document('users/$id');
   User(this.email, this.password, [this.confirmPassword, this.name, this.id]);
 
   Future<void> saveData() async {
-    await Firestore.instance.collection('users').document(id).setData(toMap());
+    await firestoreRef.setData(toMap());
   }
 
   Map<String, dynamic> toMap() {
