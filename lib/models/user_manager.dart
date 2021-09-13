@@ -7,7 +7,7 @@ import 'package:lojavirtual/models/user.dart';
 
 class UserManager extends ChangeNotifier {
   final FirebaseAuth auth = FirebaseAuth.instance;
-  late FirebaseUser user;
+  User user;
   bool _loading = false;
   bool get loading => _loading;
   final Firestore firestore = Firestore.instance;
@@ -39,11 +39,12 @@ class UserManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> _loadCurrentUser() async {
-    final FirebaseUser currentUser = await auth.currentUser();
+  Future<void> _loadCurrentUser({FirebaseUser? firebaseUser}) async {
+    final FirebaseUser currentUser = firebaseUser ?? await auth.currentUser();
     if (currentUser != null) {
       final DocumentSnapshot doc =
           await firestore.collection('users').document(currentUser.uid).get();
+      user = User.fromDocument(doc);
     }
     notifyListeners();
   }
