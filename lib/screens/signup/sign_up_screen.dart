@@ -4,7 +4,7 @@ import 'package:lojavirtual/models/user.dart';
 
 class SignUpScreen extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final User user = User();
+  late final User user;
 
   @override
   Widget build(BuildContext context) {
@@ -24,18 +24,20 @@ class SignUpScreen extends StatelessWidget {
                 shrinkWrap: true,
                 children: [
                   TextFormField(
-                      validator: (nome) {
-                        if (nome!.isEmpty) {
-                          return "Campo obrigatório";
-                        } else if (nome.length < 2)
-                          return "Nome muito curto";
-                        else if (nome.trim().split(' ').length <= 1) {
-                          return "Insira o nome completo";
-                        }
-                        return null;
-                      },
-                      decoration:
-                          const InputDecoration(hintText: "Nome completo")),
+                    validator: (nome) {
+                      if (nome!.isEmpty) {
+                        return "Campo obrigatório";
+                      } else if (nome.length < 2)
+                        return "Nome muito curto";
+                      else if (nome.trim().split(' ').length <= 1) {
+                        return "Insira o nome completo";
+                      }
+                      return null;
+                    },
+                    decoration:
+                        const InputDecoration(hintText: "Nome completo"),
+                    onSaved: (name) => user.name = name,
+                  ),
                   const SizedBox(height: 16),
                   TextFormField(
                       keyboardType: TextInputType.emailAddress,
